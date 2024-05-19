@@ -171,7 +171,7 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = "SELECT paint_brand, paint_color, SUM(qty) as total_qty FROM paint GROUP BY paint_brand, paint_color";
+                                            $sql = "SELECT paint_brand, paint_color, qty as total_qty FROM paint";
                                             $query = mysqli_query($db, $sql);
 
                                             if (!mysqli_num_rows($query) > 0) {
