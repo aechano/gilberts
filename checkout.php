@@ -5,32 +5,7 @@ include("connection/connect.php");
 include_once 'product-action.php';
 error_reporting(0);
 session_start();
-if (empty($_SESSION["user_id"])) {
-    header('location:login.php');
-} else {
-
-
-    foreach ($_SESSION["cart_item"] as $item) {
-
-        // print_r($item);
-
-        $item_total += ($item["price"] * $item["quantity"]);
-
-        if ($_POST['submit']) {
-            
-            
-
-            $SQL_ORDERS = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
-            $a = mysqli_query($db, $SQL_ORDERS);
-            $order_id = mysqli_insert_id($db);
-
-            // $SQL_PAINTS = "insert into paint(paint_brand,paint_color,qty,o_id) values('" . $item["brand"] . "','" . $item["color"] . "','" . 0 . "','" . $order_id . "')";
-            // mysqli_query($db, $SQL_PAINTS);
-
-            $success = "Thankyou! Your Order Placed Successfully!";
-            $_SESSION["cart_item"] = "";
-        }
-    }
+include_once("config/checkout/checkout.php");
 ?>
 
 
