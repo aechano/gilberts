@@ -1,5 +1,5 @@
 <?php
-include_once ("../EnvVariables.php");
+include_once (__DIR__ . "/../EnvVariables.php");
 
 if (empty($_SESSION["user_id"])) {
     header('location:login.php');
