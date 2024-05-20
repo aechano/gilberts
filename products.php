@@ -240,9 +240,6 @@ include_once 'config/products/getBrands.php';
                             <label for="color" class="control-label">Color:</label>
                             <select class="form-control" id="color" name="color" disabled>
                                 <option value="" hidden>Choose Color</option>
-                                <option value="color1">Color 1</option>
-                                <option value="color2">Color 2</option>
-                                <option value="color3">Color 3</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Add to Cart</button>
