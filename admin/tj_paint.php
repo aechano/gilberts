@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("../connection/connect.php");
+include ("../connection/connect.php");
 error_reporting(0);
 session_start();
-
+include_once ("config/allTJOrders.php");
 ?>
 
 <head>
@@ -58,19 +58,18 @@ session_start();
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-
-
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  "
+                                href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  "
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-
-
-
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/4.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img src="images/users/4.jpg" alt="user"
+                                    class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="logout.php"><i class="fa fa-power-off"></i> LogOut</a></li>
@@ -91,14 +90,16 @@ session_start();
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Admin Panel</li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Home</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span
+                                    class="hide-menu">Home</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="dashboard.php">Dashboard</a></li>
 
                             </ul>
                         </li>
                         <li class="nav-label">Options</li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"> <span><i class="fa fa-user f-s-20 "></i></span><span class="hide-menu">Users</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"> <span><i
+                                        class="fa fa-user f-s-20 "></i></span><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="allusers.php">All Users</a></li>
                                 <li><a href="add_users.php">Add Users</a></li>
@@ -106,7 +107,9 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Services</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i
+                                    class="fa fa-archive f-s-20 color-warning"></i><span
+                                    class="hide-menu">Services</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="allservice.php">All Services</a></li>
                                 <li><a href="add_category.php">Add Category</a></li>
@@ -114,7 +117,8 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Product</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery"
+                                    aria-hidden="true"></i><span class="hide-menu">Product</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_product.php">All Products</a></li>
                                 <li><a href="add_product.php">Add Product</a></li>
@@ -122,13 +126,15 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_orders.php">All Orders</a></li>
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush"
+                                    aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="tj_paint.php">Pre-Order</a></li>
                             </ul>
@@ -158,42 +164,32 @@ session_start();
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">All Pre-Orders</h4>
+                                <h4 class="card-title">All Paint Pre-Orders to TJ Paint Center</h4>
 
                                 <div class="table-responsive m-t-40">
                                     <table id="myTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Paint Brands</th>
-                                                <th>Products</th>
-                                                <th>Paint Quantity</th>
+                                                <th>Brand</th>
+                                                <th>Color</th>
+                                                <th>Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sql = "SELECT paint_brand, paint_color, qty as total_qty FROM paint";
-                                            $query = mysqli_query($db, $sql);
-
-                                            if (!mysqli_num_rows($query) > 0) {
-                                                echo '<td colspan="3"><center>No Paint Orders!</center></td>';
-                                            } else {
-                                                while ($row = mysqli_fetch_array($query)) {
-                                            ?>
-                                                    <tr>
-                                                        <td><?php echo $row['paint_brand']; ?></td>
-                                                        <td><?php echo $row['paint_color']; ?></td>
-                                                        <td><?php echo $row['total_qty']; ?></td>
-                                                    </tr>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                            <?php foreach ($all_orders['preOrders'] as $order) { ?>
+                                                <tr>
+                                                    <th><?php echo $order['productId']['brandId']['name'] ?></th>
+                                                    <th><?php echo $order['productId']['description'] ?></th>
+                                                    <th><?php echo $order['stockId']['quantity'] ?></th>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
                                 <!-- Button to confirm order -->
                                 <div class="text-right" style="margin-top: 10px;">
-                                    <button type="button" class="btn btn-primary">Confirm Order</button>
+                                    <button id="confirmOrder" type="button" class="btn btn-primary">Confirm
+                                        Order</button>
                                 </div>
                             </div>
                         </div>
@@ -206,10 +202,6 @@ session_start();
     <!-- End PAge Content -->
     </div>
     <!-- End Container fluid  -->
-
-
-
-
     <!-- footer -->
     <footer class="footer"> © 2023 All rights reserved. Made by <b>ACA</b> Team. </footer>
     <!-- End footer -->
@@ -217,6 +209,32 @@ session_start();
     <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var confirmOrder = document.getElementById('confirmOrder');
+
+            confirmOrder.addEventListener('click', async function () {
+                const bodyData = {
+                    "ids": <?php echo json_encode($all_orders['preOrderIds']) ?>
+                };
+                try {
+                    // Fetch data from the API with a body
+                    const response = await fetch('http://localhost:8090/api/partner/<?php echo $GILBERT_KEY; ?>/stocks/confirm_order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(bodyData)
+                    });
+                    if (!response.ok) {
+                        throw new Error('There\'s a problem confirming your order. Try again later.');
+                    }
+                } catch (error) {
+                    throw new Error('There\'s a problem confirming your order. Try again later.');
+                }
+            });
+        });
+    </script>
     <!-- All Jquery -->
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
