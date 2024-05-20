@@ -169,13 +169,15 @@ include_once ("config/allTJOrdersConfirmed.php");
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($all_orders['preOrders'] as $order) { ?>
-                                                <tr>
-                                                    <th><?php echo $order['productId']['brandId']['name'] ?></th>
-                                                    <th><?php echo $order['productId']['description'] ?></th>
-                                                    <th><?php echo $order['stockId']['quantity'] ?></th>
-                                                </tr>
-                                            <?php } ?>
+                                            <?php if (!is_null($all_orders) && isset($all_orders['preOrders'])): ?>
+                                                <?php foreach ($all_orders['preOrders'] as $order) { ?>
+                                                    <tr>
+                                                        <th><?php echo $order['productId']['brandId']['name'] ?></th>
+                                                        <th><?php echo $order['productId']['description'] ?></th>
+                                                        <th><?php echo $order['stockId']['quantity'] ?></th>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>
