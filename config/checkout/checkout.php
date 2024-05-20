@@ -1,5 +1,5 @@
 <?php
-include_once("../EnvVariables.php");
+include_once ("../EnvVariables.php");
 
 if (empty($_SESSION["user_id"])) {
     header('location:login.php');
@@ -7,6 +7,7 @@ if (empty($_SESSION["user_id"])) {
     foreach ($_SESSION["cart_item"] as $item) {
         // print_r($item);
         $item_total += ($item["price"] * $item["quantity"]);
+        $successfulOperation = false;
         if ($_POST['submit']) {
 
             $ch = curl_init();
@@ -15,16 +16,9 @@ if (empty($_SESSION["user_id"])) {
                 'Content-Type: application/json'
             ];
             $data = [
-                'productId' => [
-                    "name" => $p_name,
-                    "description" => $p_desc,
-                    "unitPrice" => $p_sale,
-                    "brandId" => [
-                        "brandId" => $p_cat
-                    ]
-                ],
-                'quantity' => $p_qty,
-                'status' => $p_status
+                "brandId" => $item["brand"],
+                "description" => $item["color"],
+                "quantity" => getQuantity(),
             ];
 
             $jsonData = json_encode($data);
@@ -38,17 +32,43 @@ if (empty($_SESSION["user_id"])) {
             $response = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);  // Get HTTP response status code
 
+            if ($httpCode === 401) {
+                // HANDLE UNAUTHORIZED
+                $success = "Can't handle paint requests right now, but your order will still be processed. Sorry for the inconvenience.";
+
+                $SQL_ORDERS = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
+                $a = mysqli_query($db, $SQL_ORDERS);
+                $order_id = mysqli_insert_id($db);
+                break;
+            } else if ($httpCode === 404) {
+                // HANDLE NOT FOUND
+                $success = "An item requires a paint that is unavailable. Please try other colors or brands, or try again later.";
+                break;
+            } else if ($httpCode === 400) {
+                // HANDLE BAD REQUEST
+                $success = "An item requires a paint with insufficient stock. Please try other colors or brands, or try again later.";
+                break;
+            } else if ($httpCode === 200) {
+                // HANDLE OK
+                $preorder = json_decode($response, true);
+
+                $SQL_ORDERS = "insert into users_orders(u_id,title,quantity,price,preorderId) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','" . $preorder["preOrderId"] . "')";
+                $a = mysqli_query($db, $SQL_ORDERS);
+                $order_id = mysqli_insert_id($db);
+
+                $success = "Thankyou! Your Order Placed Successfully!";
+                $successfulOperation = true;
+            }
+
             curl_close($ch);
-
-            $SQL_ORDERS = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
-            $a = mysqli_query($db, $SQL_ORDERS);
-            $order_id = mysqli_insert_id($db);
-
-            // $SQL_PAINTS = "insert into paint(paint_brand,paint_color,qty,o_id) values('" . $item["brand"] . "','" . $item["color"] . "','" . 0 . "','" . $order_id . "')";
-            // mysqli_query($db, $SQL_PAINTS);
-
-            $success = "Thankyou! Your Order Placed Successfully!";
-            $_SESSION["cart_item"] = "";
         }
     }
+    if ($successfulOperation) {
+        $_SESSION["cart_item"] = "";
+    }
+}
+
+function getQuantity()
+{
+    return 5;
 }
