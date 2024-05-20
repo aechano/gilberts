@@ -15,10 +15,11 @@ if (empty($_SESSION["user_id"])) {
             $headers = [
                 'Content-Type: application/json'
             ];
+            // {"title":"Glass Door with Aluminum Frame","d_id":22,"quantity":"1","price":"6000.00","color":"White","brand":"11"}
             $data = [
                 "brandId" => $item["brand"],
                 "description" => $item["color"],
-                "quantity" => getQuantity(),
+                "quantity" => getQuantity($item['quantity'], $item['d_id']),
             ];
 
             $jsonData = json_encode($data);
@@ -68,7 +69,11 @@ if (empty($_SESSION["user_id"])) {
     }
 }
 
-function getQuantity()
-{
-    return 5;
+function getQuantity( $quantity, $product ) {
+    if (in_array($product, [63, 64, 67, 68, 69, 70, 71, 72, 65, 66, 62])) {
+        return 2 * (int)$quantity;
+    } else if (in_array($product, [61, 22, 23])) {
+        return 1 * (int)$quantity;
+    }
+    return 0;
 }
