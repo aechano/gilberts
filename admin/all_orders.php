@@ -203,9 +203,7 @@ session_start();
                                                         <td><?php echo $rows['address']; ?></td>
                                                         <td><?php echo $brand; ?></td>
                                                         <td><?php echo $color; ?></td>
-                                                        <td>
-                                                            <input type="number" class="paint-qty" data-order-id="<?php echo $rows['o_id']; ?>" value="<?php echo $qty; ?>">
-                                                        </td>
+                                                        <td><?php echo $qty; ?></td>
                                                         <?php
                                                         $status = $rows['status'];
                                                         if ($status == "" or $status == "NULL") {
