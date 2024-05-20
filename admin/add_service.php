@@ -181,7 +181,7 @@ if (isset($_POST['submit']))           //if upload btn is pressed
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="allservice.php">All Services</a></li>
                                 <li><a href="add_category.php">Add Category</a></li>
-                                <li><a href="add_restraunt.php">Add Service</a></li>
+                                <li><a href="add_service.php">Add Service</a></li>
 
                             </ul>
                         </li>
@@ -201,7 +201,8 @@ if (isset($_POST['submit']))           //if upload btn is pressed
                         </li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="tj_paint.php">Pre-Order</a></li>
+                                <li><a href="tj_paint.php">Unconfirmed Pre-Order</a></li>
+                                <li><a href="confirmed_order.php">Confirmed Pre-Order</a></li>
                             </ul>
                         </li>
 
