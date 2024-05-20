@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("../connection/connect.php");
+include ("../connection/connect.php");
 error_reporting(0);
 session_start();
-
-?>
+include_once (__DIR__ . "/config/getPreorderById.php")
+    ?>
 
 <head>
     <meta charset="utf-8">
@@ -58,19 +58,18 @@ session_start();
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-
-
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  "
+                                href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  "
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-
-
-
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/4.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img src="images/users/4.jpg" alt="user"
+                                    class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="logout.php"><i class="fa fa-power-off"></i> LogOut</a></li>
@@ -91,30 +90,31 @@ session_start();
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Admin Panel</li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Home</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span
+                                    class="hide-menu">Home</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="dashboard.php">Dashboard</a></li>
-
                             </ul>
                         </li>
                         <li class="nav-label">Options</li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"> <span><i class="fa fa-user f-s-20 "></i></span><span class="hide-menu">Users</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"> <span><i
+                                        class="fa fa-user f-s-20 "></i></span><span class="hide-menu">Users</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="allusers.php">All Users</a></li>
                                 <li><a href="add_users.php">Add Users</a></li>
-
-
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Services</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i
+                                    class="fa fa-archive f-s-20 color-warning"></i><span
+                                    class="hide-menu">Services</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="allservice.php">All Services</a></li>
                                 <li><a href="add_category.php">Add Category</a></li>
                                 <li><a href="add_service.php">Add Service</a></li>
-
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Product</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery"
+                                    aria-hidden="true"></i><span class="hide-menu">Product</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_product.php">All Products</a></li>
                                 <li><a href="add_product.php">Add Product</a></li>
@@ -122,19 +122,20 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_orders.php">All Orders</a></li>
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush"
+                                    aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="tj_paint.php">Unconfirmed Pre-Order</a></li>
                                 <li><a href="confirmed_order.php">Confirmed Pre-Order</a></li>
                             </ul>
                         </li>
-
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -149,7 +150,6 @@ session_start();
                 <div class="col-md-5 align-self-center">
                     <h3 class="text-primary">Orders</h3>
                 </div>
-
             </div>
             <!-- End Bread crumb -->
             <!-- Container fluid  -->
@@ -157,8 +157,6 @@ session_start();
                 <!-- Start Page Content -->
                 <div class="row">
                     <div class="col-12">
-
-
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">All User Orders</h4>
@@ -172,8 +170,7 @@ session_start();
                                                 <th>Quantity</th>
                                                 <th>Price</th>
                                                 <th>Address</th>
-                                                <th>Paint Brand</th>
-                                                <th>Color</th>
+                                                <th>Paint</th>
                                                 <th>Paint Quantity</th>
                                                 <th>Status</th>
                                                 <th>Ordered Date</th>
@@ -189,20 +186,18 @@ session_start();
                                                 echo '<td colspan="11"><center>No Orders-Data!</center></td>';
                                             } else {
                                                 while ($rows = mysqli_fetch_array($query)) {
-                                                    $query_res_paint = mysqli_query($db, "SELECT * FROM paint WHERE o_id='" . $rows['o_id'] . "'");
-                                                    $paint = mysqli_fetch_assoc($query_res_paint);
-                                                    $brand = isset($paint['paint_brand']) ? $paint['paint_brand'] : 'N/A';
-                                                    $color = isset($paint['paint_color']) ? $paint['paint_color'] : 'N/A';
-                                                    $qty = isset($paint['qty']) ? $paint['qty'] : 'N/A';
-                                            ?>
+                                                    $preorder = getPreOrder($rows['preorderId']);
+                                                    $brand = isset($preorder['productId']['brandId']['name']) ? $preorder['productId']['brandId']['name'] : 'N/A';
+                                                    $color = isset($preorder['productId']['description']) ? $preorder['productId']['description'] : 'N/A';
+                                                    $qty = isset($preorder['stockId']['quantity']) ? $preorder['stockId']['quantity'] : 'N/A';
+                                                    ?>
                                                     <tr>
                                                         <td><?php echo $rows['username']; ?></td>
                                                         <td><?php echo $rows['title']; ?></td>
                                                         <td><?php echo $rows['quantity']; ?></td>
                                                         <td>&#8369; <?php echo $rows['price']; ?></td>
                                                         <td><?php echo $rows['address']; ?></td>
-                                                        <td><?php echo $brand; ?></td>
-                                                        <td><?php echo $color; ?></td>
+                                                        <td><?php echo $brand . " (" . $color . ")"; ?></td>
                                                         <td><?php echo $qty; ?></td>
                                                         <?php
                                                         $status = $rows['status'];
@@ -218,11 +213,16 @@ session_start();
                                                         echo '<td>' . $rows['date'] . '</td>';
                                                         ?>
                                                         <td>
-                                                            <a href="delete_orders.php?order_del=<?php echo $rows['o_id']; ?>" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a>
-                                                            <a href="view_order.php?user_upd=<?php echo $rows['o_id']; ?>" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-settings"></i></a>
+                                                            <a href="delete_orders.php?order_del=<?php echo $rows['o_id']; ?>"
+                                                                onclick="return confirm('Are you sure?');"
+                                                                class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i
+                                                                    class="fa fa-trash-o" style="font-size:16px"></i></a>
+                                                            <a href="view_order.php?user_upd=<?php echo $rows['o_id']; ?>"
+                                                                class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i
+                                                                    class="ti-settings"></i></a>
                                                         </td>
                                                     </tr>
-                                            <?php
+                                                    <?php
                                                 }
                                             }
                                             ?>
@@ -276,16 +276,16 @@ session_start();
     <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="js/lib/datatables/datatables-init.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.paint-qty').forEach(function(element) {
-                element.addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.paint-qty').forEach(function (element) {
+                element.addEventListener('change', function () {
                     var orderId = this.getAttribute('data-order-id');
                     var newQty = this.value;
 
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', 'update_paint_qty.php', true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.onreadystatechange = function() {
+                    xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             alert('Quantity updated successfully!');
                         }
