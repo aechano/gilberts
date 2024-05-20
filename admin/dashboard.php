@@ -131,7 +131,8 @@ if (empty($_SESSION["adm_id"])) {
                             </li>
                             <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hide-menu">Paints</span></a>
                                 <ul aria-expanded="false" class="collapse">
-                                    <li><a href="tj_paint.php">Pre-Order</a></li>
+                                    <li><a href="tj_paint.php">Unconfirmed Pre-Order</a></li>
+                                    <li><a href="confirmed_order.php">Confirmed Pre-Order</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -179,7 +180,7 @@ if (empty($_SESSION["adm_id"])) {
                                 <div class="media">
                                     <div class="media-left meida media-middle">
                                         <span><i class="fa fa-home f-s-40" aria-hidden="true"></i></span>
-                                        
+
                                     </div>
                                     <div class="media-body media-text-right">
                                         <h2><?php $sql = "select * from products";
@@ -238,10 +239,10 @@ if (empty($_SESSION["adm_id"])) {
                                     <div class="media-body media-text-right">
                                         <!-- Total number ng paints dito -->
                                         <!-- <h2><?php $sql = "select * from users_orders";
-                                            $result = mysqli_query($db, $sql);
-                                            $rws = mysqli_num_rows($result);
+                                                    $result = mysqli_query($db, $sql);
+                                                    $rws = mysqli_num_rows($result);
 
-                                            echo $rws; ?></h2> -->
+                                                    echo $rws; ?></h2> -->
                                         <p class="m-b-0">Paints</p>
                                     </div>
                                 </div>

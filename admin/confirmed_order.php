@@ -147,7 +147,7 @@ session_start();
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Unconfirmed Pre-Orders</h3>
+                    <h3 class="text-primary">Confirmed Pre-Orders</h3>
                 </div>
 
             </div>
@@ -192,10 +192,7 @@ session_start();
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- Button to confirm order -->
-                                <div class="text-right" style="margin-top: 10px;">
-                                    <button type="button" class="btn btn-primary">Confirm Order</button>
-                                </div>
+                            
                             </div>
                         </div>
                     </div>
