@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("connection/connect.php");
+include ("connection/connect.php");
 include_once 'product-action.php';
 error_reporting(0);
 session_start();
-include_once("config/checkout/checkout.php");
+include_once ("config/checkout/checkout.php");
 ?>
 
 <head>
@@ -34,26 +34,27 @@ include_once("config/checkout/checkout.php");
             <!-- .navbar -->
             <nav class="navbar navbar-dark">
                 <div class="container">
-                    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/gilbertslogo.png" alt=""> </a>
+                    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
+                        data-target="#mainNavbarCollapse">&#9776;</button>
+                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/gilbertslogo.png"
+                            alt=""> </a>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                            <li class="nav-item"> <a class="nav-link active" href="services.php">Services <span class="sr-only"></span></a> </li>
+                            <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span
+                                        class="sr-only">(current)</span></a> </li>
+                            <li class="nav-item"> <a class="nav-link active" href="services.php">Services <span
+                                        class="sr-only"></span></a> </li>
 
                             <?php
                             if (empty($_SESSION["user_id"])) {
                                 echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
 							  <li class="nav-item"><a href="registration.php" class="nav-link active">Sign Up</a> </li>';
                             } else {
-
-
-                                echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
-                                echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">LogOut</a> </li>';
+                                echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Your Orders</a> </li>';
+                                echo '<li class="nav-item"><a href="logout.php" class="nav-link active">LogOut</a> </li>';
                             }
 
                             ?>
-
                         </ul>
                     </div>
                 </div>
@@ -65,9 +66,12 @@ include_once("config/checkout/checkout.php");
                 <div class="container">
                     <ul class="row links">
 
-                        <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="services.php">Choose services</a></li>
-                        <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick your selected item</a></li>
-                        <li class="col-xs-12 col-sm-4 link-item active"><span>3</span><a href="checkout.php">Get delivered & Pay</a></li>
+                        <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="services.php">Choose
+                                services</a></li>
+                        <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick your selected item</a>
+                        </li>
+                        <li class="col-xs-12 col-sm-4 link-item active"><span>3</span><a href="checkout.php">Get
+                                delivered & Pay</a></li>
                     </ul>
                 </div>
             </div>
@@ -79,30 +83,20 @@ include_once("config/checkout/checkout.php");
                 </span>
 
             </div>
-
-
-
-
             <div class="container m-t-30">
                 <form action="" method="post">
                     <div class="widget clearfix">
-
                         <div class="widget-body">
-                            <form method="post" action="#">
+                            <form method="post" id="paymentForm" action="#">
                                 <div class="row">
-
                                     <div class="col-sm-12">
                                         <div class="cart-totals margin-b-20">
                                             <div class="cart-totals-title">
                                                 <h4>Cart Summary</h4>
                                             </div>
                                             <div class="cart-totals-fields">
-
                                                 <table class="table">
                                                     <tbody>
-
-
-
                                                         <tr>
                                                             <td>Cart Subtotal</td>
                                                             <td> ₱<?php echo $item_total; ?></td>
@@ -113,13 +107,11 @@ include_once("config/checkout/checkout.php");
                                                         </tr>
                                                         <tr>
                                                             <td class="text-color"><strong>Total</strong></td>
-                                                            <td class="text-color"><strong>₱<?php echo $item_total; ?></strong></td>
+                                                            <td class="text-color">
+                                                                <strong>₱<?php echo $item_total; ?></strong>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
-
-
-
-
                                                 </table>
                                             </div>
                                         </div>
@@ -128,17 +120,29 @@ include_once("config/checkout/checkout.php");
                                             <ul class=" list-unstyled">
                                                 <li>
                                                     <label class="custom-control custom-radio  m-b-20">
-                                                        <input name="mod" id="radioStacked1" checked value="COD" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on delivery</span>
-                                                        <br> <span>Pay digitally with SMS Pay Link. Cash may not be accepted in COVID restricted areas.</span> </label>
+                                                        <input name="mod" id="radioStacked1" checked value="COD"
+                                                            type="radio" class="custom-control-input"> <span
+                                                            class="custom-control-indicator"></span> <span
+                                                            class="custom-control-description">Cash on delivery</span>
+                                                        <br> <span>Pay digitally with SMS Pay Link. Cash may not be
+                                                            accepted in COVID restricted areas.</span> </label>
                                                 </li>
                                                 <li>
                                                     <label class="custom-control custom-radio  m-b-10">
-                                                        <input name="mod" type="radio" value="paypal" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Credit Card<img src="images/paypal.jpg" alt="" width="90"></span> </label>
+                                                        <input name="mod" type="radio" value="paypal"
+                                                            class="custom-control-input"> <span
+                                                            class="custom-control-indicator"></span> <span
+                                                            class="custom-control-description">Credit Card<img
+                                                                src="images/paypal.jpg" alt="" width="90"></span>
+                                                    </label>
                                                 </li>
                                             </ul>
-                                            <p class="text-xs-center"> <input type="submit" onclick="return confirm('Are you sure?');" name="submit" class="btn btn-outline-success btn-block" value="Order now"> </p>
+                                            <p class="text-xs-center"> <input type="submit"
+                                                    onclick="return confirm('Are you sure?');" name="submit"
+                                                    class="btn btn-outline-success btn-block" value="Order now"> </p>
                                         </div>
-
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -154,13 +158,15 @@ include_once("config/checkout/checkout.php");
             <!-- top footer statrs -->
             <div class="row top-footer">
                 <div class="col-xs-12 col-sm-3 footer-logo-block color-gray">
-                    <a href="#"> <img src="images/gilbertslogo.png" alt="Footer logo"> </a> <span>Choose it &amp; Enjoy our Services! </span>
+                    <a href="#"> <img src="images/gilbertslogo.png" alt="Footer logo"> </a> <span>Choose it &amp; Enjoy
+                        our Services! </span>
                 </div>
                 <div class="col-xs-12 col-sm-2 about color-gray">
                     <h5>About Us</h5>
                     <ul>
                         <li><a href="#">Our Services</a></li>
-                        <li><a href="https://www.facebook.com/profile.php?id=100083110423923&mibextid=ZbWKwL">Social Media</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100083110423923&mibextid=ZbWKwL">Social
+                                Media</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-2 how-it-works-links color-gray">
@@ -172,7 +178,7 @@ include_once("config/checkout/checkout.php");
                         <li><a href="#">Get delivered</a></li>
                         <li><a href="#">Pay on delivery</a></li>
                         <!--
-							<li><a href="#">Enjoy your meals :)</a></li>
+                            <li><a href="#">Enjoy your meals :)</a></li>
                              -->
                     </ul>
                 </div>
@@ -226,7 +232,8 @@ include_once("config/checkout/checkout.php");
                     </div>
                     <div class="col-xs-12 col-sm-5 additional-info color-gray">
                         <h5>Who are we?</h5>
-                        <p>Launched in 2023, Our platform connects customers and our store serving their furniture needs. Customers can use our platform to search and discover new products and services.</p>
+                        <p>Launched in 2023, Our platform connects customers and our store serving their furniture
+                            needs. Customers can use our platform to search and discover new products and services.</p>
                     </div>
                 </div>
             </div>
