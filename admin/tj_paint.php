@@ -165,7 +165,7 @@ include_once ("config/allTJOrders.php");
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">All Paint Pre-Orders to TJ Paint Center</h4>
+                                <h4 class="card-title">All Unconfirmed Paint Pre-Orders to TJ Paint Center</h4>
 
                                 <div class="table-responsive m-t-40">
                                     <table id="myTable" class="table table-bordered table-striped">
@@ -230,6 +230,7 @@ include_once ("config/allTJOrders.php");
                     if (!response.ok) {
                         throw new Error('There\'s a problem confirming your order. Try again later.');
                     }
+                    location.reload();
                 } catch (error) {
                     throw new Error('There\'s a problem confirming your order. Try again later.');
                 }
